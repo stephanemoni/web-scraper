@@ -15,8 +15,6 @@ header( 'Access-Control-Allow-Origin: *' );
 
 // Front-end Form
 if ( ! isset( $_REQUEST[ 'url' ] ) ) {
-	$location = sys_get_temp_dir();
-	echo("error_log() => Temp DIR=$location");
     include( dirname( __FILE__ ) . '/include/template/form.php' );
     exit;
 }

@@ -1,6 +1,7 @@
 <?php
 namespace PHPSimpleWebScraper\Browser;
 use JonnyW\PhantomJs\Client;
+use JonnyW\PhantomJs\DependencyInjection\ServiceContainer;
 
 abstract class PhantomJSWrapper {
 
@@ -36,10 +37,19 @@ abstract class PhantomJSWrapper {
      * @param array  array|string    $asPhantomJSConfig  An array holding PhantomJS client configurations or a string of config file path.
      */
     public function __construct( $sPhantomJSBinaryPath='', $sUserAgent='', array $aHeaders=array(), $asPhantomJSConfig=array() ) {
+		
+		// Custom script (procedure)
+		$location = '/scripts';
+		$serviceContainer = ServiceContainer::getInstance();
+		$procedureLoader = $serviceContainer->get( 'procedure_loader_factory' )->createProcedureLoader( $location );
 
-        // @see http://jonnnnyw.github.io/php-phantomjs/4.0/3-usage/#custom-headers
-        $this->oClient = Client::getInstance();
-        $this->oClient->isLazy(); // Tells the client to wait for all resources before rendering
+		// @see http://jonnnnyw.github.io/php-phantomjs/4.0/3-usage/#custom-headers
+		$this->oClient = Client::getInstance();
+		$this->oClient->isLazy(); // Tells the client to wait for all resources before rendering
+
+		// Load custom template
+		$this->oClient->setProcedure( 'scroll_down' );
+		$this->oClient->getProcedureLoader()->addLoader( $procedureLoader );
 
         // Configurations
         $this->___setConfigurations( $this->oClient, $asPhantomJSConfig );

@@ -55,7 +55,7 @@ use PHPSimpleWebScraper\Utility\Utility;
                     <div class="field has-addons">
                         <p class="control is-expanded has-icons-left">
                             <label>                               
-                                <input class="is-medium input" required="required" type="url" name="url" placeholder="Tapez une URL." />
+                                <input class="is-medium input" required="required" type="url" name="url" placeholder="Type a URL." />
                                 <span class="icon is-small is-left">
                                   <i class="fa fa-arrow-right"></i>
                                 </span>          

@@ -1,0 +1,22 @@
+var page = require('webpage').create(),
+response = {};
+
+page.open ('{{ input.getUrl() }}', '{{ input.getMethod() }}', '{{ input.getBody() }}', function (status) {
+
+	page.includeJs('http://upcdn.b0.upaiyun.com/libs/jquery/jquery-2.0.2.min.js', function($includeJsEvent){
+
+		 response.content = page.evaluate(function () {
+
+			$(".answer-text").click();
+
+			return $('body').html();
+		 });
+
+		console.log(JSON.stringify(response));
+		phantom.exit(1);
+	});
+});
+
+phantom.onError = function(msg, trace) {
+    phantom.exit(1);
+};
