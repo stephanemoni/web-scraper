@@ -39,7 +39,7 @@ abstract class PhantomJSWrapper {
     public function __construct( $sPhantomJSBinaryPath='', $sUserAgent='', array $aHeaders=array(), $asPhantomJSConfig=array() ) {
 		
 		// Custom script (procedure)
-		$location = '/scripts';
+		$location = $_SERVER[ 'DOCUMENT_ROOT' ] . '/scripts';
 		$serviceContainer = ServiceContainer::getInstance();
 		$procedureLoader = $serviceContainer->get( 'procedure_loader_factory' )->createProcedureLoader( $location );
 
