@@ -29,7 +29,7 @@ class Browser extends PhantomJSWrapper {
 
         $this->oClient->send( $request, $response );
 		
-		echo( "Location=$location Javscript logs:" . json_encode($reponse->getConsole()) . " client=" . $reponse->getStatus() );
+		echo( "Javscript logs:" . json_encode($response->getConsole()) . " client=" . $response->getStatus() );
 		
         return $response;
 
