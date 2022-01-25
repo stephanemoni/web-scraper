@@ -39,17 +39,17 @@ abstract class PhantomJSWrapper {
     public function __construct( $sPhantomJSBinaryPath='', $sUserAgent='', array $aHeaders=array(), $asPhantomJSConfig=array() ) {
 		
 		// Custom script (procedure)
-		$location = $_SERVER[ 'DOCUMENT_ROOT' ] . '/scripts';
-		$serviceContainer = ServiceContainer::getInstance();
-		$procedureLoader = $serviceContainer->get( 'procedure_loader_factory' )->createProcedureLoader( $location );
+		//$location = $_SERVER[ 'DOCUMENT_ROOT' ] . '/scripts';
+		//$serviceContainer = ServiceContainer::getInstance();
+		//$procedureLoader = $serviceContainer->get( 'procedure_loader_factory' )->createProcedureLoader( $location );
 
 		// @see http://jonnnnyw.github.io/php-phantomjs/4.0/3-usage/#custom-headers
 		$this->oClient = Client::getInstance();
 		$this->oClient->isLazy(); // Tells the client to wait for all resources before rendering
 
 		// Load custom template
-		$this->oClient->setProcedure( 'scroll_down' );
-		$this->oClient->getProcedureLoader()->addLoader( $procedureLoader );
+		//$this->oClient->setProcedure( 'scroll_down' );
+		//$this->oClient->getProcedureLoader()->addLoader( $procedureLoader );
 
         // Configurations
         $this->___setConfigurations( $this->oClient, $asPhantomJSConfig );
